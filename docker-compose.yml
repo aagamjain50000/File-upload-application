@@ -9,15 +9,20 @@ services:
       - .:/app
     environment:
       - ENV=development
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=file_upload_db
+      - POSTGRES_HOST=db
     depends_on:
-      - db  # if you have a database service
+      - db
 
   db:  # Example for a PostgreSQL service
     image: postgres:latest
     environment:
-      POSTGRES_DB: mydatabase
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      # Set the default username and password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: file_upload_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
